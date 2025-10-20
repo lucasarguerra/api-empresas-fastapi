@@ -1,0 +1,19 @@
+Ë
+    ìåëhd  ã                   óz   — d dl mZ d dlmZ d dlmZ  ej                  dddd dd	¬
+«      Z  ee «      Z ee¬
+«      Z	y)
+é    )Ú
+create_engine)ÚURL)ÚsessionmakerÚ
+postgresqlÚpostgresÚlucasÚ	localhostÚ
+crud_tutoriali8  )Ú
+drivernameÚusernameÚpasswordÚhostÚdatabaseÚport)ÚbindN)
+Ú
+sqlalchemyr   Úsqlalchemy.enginer   Úsqlalchemy.ormr   ÚcreateÚurlÚengineÚ Session© ó    úC:\ecompjr\config\db.pyÚ<module>r      sF   ðÝ $Ý !Ý 'à€c‡jjØØ
+Ø
+Ø	Ø
+Ø	
+ô
+  €ñ 
+sÓ	€Ù
+˜FÔ
+# r   
