@@ -1,0 +1,113 @@
+Ë
+    ®GöhØ  ã            
+       óD  — d dl mZmZmZmZmZ d dlm Z  d dlm	Z	 d dl
+m
+Z
+ d dlm
+Z
+  e«       Zd„ Zej!                  d ej"                  ¬«       ee«      fd	e d
+e	fd
+„«       Zej'                  d «       ed«       ed«       ed«       ee«      fd
+e
+e   de
+e   de
+e   d
+e	fd„«       Zej'                  d«       ee«      fded
+e	fd„«       Zej1                  d«       ee«      fdede d
+e	fd„«       Zej5                  dej6                  ¬«       ee«      fded
+e	fd„«       Zy)é    )Ú FastAPIÚ
+HTTPExceptionÚstatusÚ DependsÚQuery)ÚEmpresaDadosGerais)Ú Session)ÚUser)ÚOptionalc               #   ót   K  — t        «       } 	 | –— | j                  «        y # | j                  «        w xY w­w)N)r	   Úclose)Údbs    úC:\ecompjr\main.pyÚget_dbr   
+   s)   è ø€ Ü	‹€BðØŠà
+‰
+øˆ‰
+üs   ‚
+8Ž# ’8£5µ8z/users)Ú
+status_codeÚuserr   c           	      óº  — |j                  t        «      j                  t        j                  | j                  k(  «      j	                  «       rt
+        t        j                  d¬«      ‚|j                  t        «      j                  t        j                  | j                  k(  «      j	                  «       rt
+        t        j                  d¬«      ‚t        | j                  | j                  | j                  | j                  | j                  | j                  | j                  ¬«       }|j                  |«       |j                  «        |j!                  |«       |S )zN
+    Cadastra uma nova empresa, verificando duplicidade de CNPJ e e-mail.
+    u0   JÃ¡ existe uma empresa cadastrada com esse CNPJ.©r   Údetailu2   JÃ¡ existe uma empresa cadastrada com esse e-mail.) ÚnameÚcnpjÚcidadeÚramo_atuacaoÚtelefoneÚemailÚdata_de_cadastro)Úqueryr
+   Úfilterr   Úfirstr   r   ÚHTTP_409_CONFLICTr   r   r   r   r   r   ÚaddÚcommitÚ refresh)r   r   Únew_users      r   Ú
+create_userr%      sù   € ð 
+‡xx”ƒ~× Ñ œTŸY™Y¨$¯)©)Ñ3Ó 4× :Ñ :Ô <ÜÜ×0Ñ0ØEô
+ð 	
+ð 
+‡xx”ƒ~× Ñ œTŸZ™Z¨4¯:©:Ñ5Ó 6× <Ñ <Ô >ÜÜ×0Ñ0ØGô
+ð 	
+ô
+ Ø
+Y‰YØ
+Y‰YØ{‰{Ø×&Ñ&Ø—‘Øj‰jØ×.Ñ.ô€Hð  ‡FFˆ8ÔØ‡II„KØ‡JJˆxÔØ
+€Oó    Nr   r   r   c                  óÂ  — |j                  t        «      }| r2|j                  t        j                  j	                  d| › d«      «      }|r2|j                  t        j
+                  j	                  d|› d«      «      }|r2|j                  t        j                  j	                  d|› d«      «      }|j                  «       }|st        t        j                  d¬«      ‚|S )z~
+    Lista todas as empresas, com filtros opcionais:
+    - cidade
+    - ramo_atuacao
+    - busca por nome (texto parcial)
+    Ú%u9   Nenhuma empresa encontrada com os parÃ¢metros informados.r   )
+r   r
+   r   r   Úiliker   r   Úallr   r   ÚHTTP_404_NOT_FOUND)r   r   r   r   r   Ú resultss         r   Ú	get_usersr-   7   s¸   € ð 
+H‰H”T‹N€Eá 
+Ø—‘œTŸ[™[×.Ñ.°°6°(¸!¨}Ó=Ó>ˆÙ Ø—‘œT×.Ñ.×4Ñ4°q¸¸ÀaÐ5HÓIÓJˆÙ 
+Ø—‘œTŸY™YŸ_™_¨q°°°a¨[Ó9Ó:ˆài‰i‹k€Gá
+ÜÜ×1Ñ1ØNô
+ð 	
+ð
+ €Nr&   z/users/{user_id}Ú user_idc                 óÎ   — |j                  t        «      j                  t        j                  | k(  «      j	                  «       }|st
+        t        j                  d| › d¬«      ‚|S )u9   
+    Retorna os dados de uma Ãºnica empresa pelo ID.
+    úEmpresa com ID õ    nÃ£o encontrada.r   )r   r
+   r   Úidr   r   r   r+   ©r.   r   r   s      r   Úget_user_by_idr4   Y   s[   € ð
+ 8‰8”D‹>×
+ Ñ
+ ¤§¡¨GÑ!3Ó
+4×
+:Ñ
+:Ó
+<€Dá
+ÜÜ×1Ñ1Ø$ W IÐ->Ð?ô
+ð 	
+ð
+ €Kr&   Ú
+user_updatec                 óº  — |j                  t        «      j                  t        j                  | k(  «      j	                  «       }|st
+        t        j                  d| › d¬«      ‚|j                  |_        |j                  |_	        |j                  |_
+        |j                  |_
+        |j                  |_        |j                  «        |j                  |«       |S )ul   
+    Atualiza os dados de uma empresa existente.
+    NÃ£o permite alterar: id, cnpj e data_de_cadastro.
+    r0   r1   r   )r   r
+   r   r2   r   r   r   r+   r   r   r   r   r   r"   r#   )r.   r5   r   r   s       r   Ú
+update_userr7   j   s²   € ð 8‰8”D‹>×
+ Ñ
+ ¤§¡¨GÑ!3Ó
+4×
+:Ñ
+:Ó
+<€Dá
+ÜÜ×1Ñ1Ø$ W IÐ->Ð?ô
+ð 	
+ð × Ñ €D„IØ×$Ñ$€D„KØ#×0Ñ0€DÔØ×(Ñ(€D„MØ×"Ñ"€D„Jà‡II„KØ‡JJˆtÔà
+€Kr&   c                 ó  — |j                  t        «      j                  t        j                  | k(  «      j	                  «       }|st
+        t        j                  d| › d¬«      ‚|j                  |«       |j                  «        dd| › diS )z/
+    Exclui uma empresa existente pelo ID.
+    r0   r1   r   Ú messageu    foi excluÃ­da com sucesso.)
+r   r
+   r   r2   r   r   r   r+   Údeleter"   r3   s      r   Ú
+delete_userr;   †   s   € ð
+ 8‰8”D‹>×
+ Ñ
+ ¤§¡¨GÑ!3Ó
+4×
+:Ñ
+:Ó
+<€Dá
+ÜÜ×1Ñ1Ø$ W IÐ->Ð?ô
+ð 	
+ð
+  ‡IIˆd„OØ‡II„Kà˜¨¨	Ð1LÐMÐ
+NÐNr&   )Ú fastapir   r   r   r   r    Úschemas.userr   Ú	config.dbr	   Ú
+model.userr
+   Útypingr
+   Úappr   ÚpostÚHTTP_201_CREATEDr%   ÚgetÚstrr-   Úintr4   Úputr7   r:   ÚHTTP_204_NO_CONTENTr;   © r&   r   Ú<module>rJ      s|  ðß BÕ BÝ +Ý Ý Ý á
+ƒi€òð ‡ˆ( × 7Ñ 7€Ó8Ù8?À»ñ Ð(ð ¨gò ó 9ððF ‡ˆÓá! $›KÙ"'¨£+Ù ›+Ù˜&“/ñ	ØS‰Mðà˜3‘-ðð 
+3‰-ð ð 	ò	ó ððB ‡Ð	ÓÙ/6°v«ñ ˜Cð  Wò ó ðð  ‡Ð	ÓÙMTÐU[Ë_ñ ˜ð Ð+=ð À7ò ó ðð6 ‡Ð¨F×,FÑ,F€ÓGÙ,3°F«Oñ O˜ð O 'ò Oó HñOr&   
